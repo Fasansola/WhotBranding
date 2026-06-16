@@ -1,585 +1,1723 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhotFrenzy — Brand Identity Brief</title>
-<!-- Self-contained: no external font requests. Uses high-quality system fonts. -->
-<style>
-  :root{
-    --ink:#0a0710; --ink2:#120c1c; --panel:#17101f; --panel2:#1e1528;
-    --line:#2c2238; --line2:#3a2d4a;
-    --heat:#ff4d1c; --heat2:#ff9a3d; --gold:#ffcf4d; --ember:#c0392b;
-    --maroon:#5a1726; --stock:#f4ecd8; --stockdim:#cfc4ad;
-    --txt:#f5eee6; --txt2:#b9aec4; --mut:#7a6a8c;
-    --grn:#34d399; --blu:#5ec8f5;
-    --mono:ui-monospace,'SFMono-Regular','Cascadia Mono','Roboto Mono','Space Mono',Menlo,Consolas,monospace; --body:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; --disp:'Haettenschweiler','Arial Narrow Bold','Impact','Bebas Neue',system-ui,sans-serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--ink); color:var(--txt); font-family:var(--body);
-    line-height:1.6; -webkit-font-smoothing:antialiased;
-    background-image:
-      radial-gradient(ellipse 70% 50% at 50% -5%, rgba(255,77,28,.16), transparent 60%),
-      radial-gradient(ellipse 50% 40% at 100% 10%, rgba(90,23,38,.30), transparent 55%);
-    background-attachment:fixed;
-  }
-  ::selection{background:var(--heat);color:#fff}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 28px 140px}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhotFrenzy — Brand Identity Brief</title>
+    <!-- Self-contained: no external font requests. Uses high-quality system fonts. -->
+    <style>
+      :root {
+        --ink: #0a0710;
+        --ink2: #120c1c;
+        --panel: #17101f;
+        --panel2: #1e1528;
+        --line: #2c2238;
+        --line2: #3a2d4a;
+        --heat: #ff4d1c;
+        --heat2: #ff9a3d;
+        --gold: #ffcf4d;
+        --ember: #c0392b;
+        --maroon: #5a1726;
+        --stock: #f4ecd8;
+        --stockdim: #cfc4ad;
+        --txt: #f5eee6;
+        --txt2: #b9aec4;
+        --mut: #7a6a8c;
+        --grn: #34d399;
+        --blu: #5ec8f5;
+        --mono:
+          ui-monospace, "SFMono-Regular", "Cascadia Mono", "Roboto Mono",
+          "Space Mono", Menlo, Consolas, monospace;
+        --body:
+          system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+          sans-serif;
+        --disp:
+          "Haettenschweiler", "Arial Narrow Bold", "Impact", "Bebas Neue",
+          system-ui, sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--ink);
+        color: var(--txt);
+        font-family: var(--body);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        background-image:
+          radial-gradient(
+            ellipse 70% 50% at 50% -5%,
+            rgba(255, 77, 28, 0.16),
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 40% at 100% 10%,
+            rgba(90, 23, 38, 0.3),
+            transparent 55%
+          );
+        background-attachment: fixed;
+      }
+      ::selection {
+        background: var(--heat);
+        color: #fff;
+      }
+      .wrap {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 28px 140px;
+      }
 
-  /* progress bar */
-  #bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:90;
-    background:linear-gradient(90deg,var(--heat),var(--gold));box-shadow:0 0 12px rgba(255,77,28,.6)}
+      /* progress bar */
+      #bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0;
+        z-index: 90;
+        background: linear-gradient(90deg, var(--heat), var(--gold));
+        box-shadow: 0 0 12px rgba(255, 77, 28, 0.6);
+      }
 
-  /* ===== HERO ===== */
-  .hero{position:relative;padding:96px 0 60px;text-align:center;overflow:hidden}
-  .suits-bg{position:absolute;inset:0;pointer-events:none;opacity:.05;font-size:140px;color:#fff;
-    display:flex;justify-content:space-around;align-items:center;font-family:var(--body)}
-  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.42em;color:var(--heat2);
-    text-transform:uppercase;margin-bottom:24px;position:relative}
-  .wordmark{font-family:var(--disp);font-size:clamp(72px,13vw,150px);line-height:.82;letter-spacing:.02em;
-    position:relative;text-shadow:0 4px 40px rgba(255,77,28,.25)}
-  .wordmark .whot{color:var(--stock)}
-  .wordmark .frenzy{color:var(--heat);display:block}
-  .hero-rule{width:60px;height:2px;background:var(--heat);margin:30px auto 0;position:relative}
-  .hero-rule::before,.hero-rule::after{content:'';position:absolute;top:50%;width:5px;height:5px;
-    border-radius:50%;background:var(--gold);transform:translateY(-50%)}
-  .hero-rule::before{left:-14px}.hero-rule::after{right:-14px}
-  .hero-tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--mut);
-    margin-top:24px;text-transform:uppercase}
+      /* ===== HERO ===== */
+      .hero {
+        position: relative;
+        padding: 96px 0 60px;
+        text-align: center;
+        overflow: hidden;
+      }
+      .suits-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.05;
+        font-size: 140px;
+        color: #fff;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-family: var(--body);
+      }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.42em;
+        color: var(--heat2);
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        position: relative;
+      }
+      .wordmark {
+        font-family: var(--disp);
+        font-size: clamp(72px, 13vw, 150px);
+        line-height: 0.82;
+        letter-spacing: 0.02em;
+        position: relative;
+        text-shadow: 0 4px 40px rgba(255, 77, 28, 0.25);
+      }
+      .wordmark .whot {
+        color: var(--stock);
+      }
+      .wordmark .frenzy {
+        color: var(--heat);
+        display: block;
+      }
+      .hero-rule {
+        width: 60px;
+        height: 2px;
+        background: var(--heat);
+        margin: 30px auto 0;
+        position: relative;
+      }
+      .hero-rule::before,
+      .hero-rule::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--gold);
+        transform: translateY(-50%);
+      }
+      .hero-rule::before {
+        left: -14px;
+      }
+      .hero-rule::after {
+        right: -14px;
+      }
+      .hero-tag {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        color: var(--mut);
+        margin-top: 24px;
+        text-transform: uppercase;
+      }
 
-  /* greeting card — looks like a dealt card */
-  .greet{background:linear-gradient(160deg,var(--panel),var(--ink2));border:1px solid var(--line2);
-    border-radius:18px;padding:38px 40px;margin:54px auto 0;max-width:760px;position:relative;
-    box-shadow:0 30px 80px -40px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.04)}
-  .greet::before{content:'★';position:absolute;top:16px;right:20px;color:var(--line2);font-size:18px}
-  .greet::after{content:'★';position:absolute;bottom:16px;left:20px;color:var(--line2);font-size:18px}
-  .greet p{font-size:16.5px;color:#d6cbdd;margin-bottom:16px}
-  .greet p:last-child{margin-bottom:0}
-  .greet strong{color:#fff;font-weight:600}
+      /* greeting card — looks like a dealt card */
+      .greet {
+        background: linear-gradient(160deg, var(--panel), var(--ink2));
+        border: 1px solid var(--line2);
+        border-radius: 18px;
+        padding: 38px 40px;
+        margin: 54px auto 0;
+        max-width: 760px;
+        position: relative;
+        box-shadow:
+          0 30px 80px -40px rgba(0, 0, 0, 0.9),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+      .greet::before {
+        content: "★";
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        color: var(--line2);
+        font-size: 18px;
+      }
+      .greet::after {
+        content: "★";
+        position: absolute;
+        bottom: 16px;
+        left: 20px;
+        color: var(--line2);
+        font-size: 18px;
+      }
+      .greet p {
+        font-size: 16.5px;
+        color: #d6cbdd;
+        margin-bottom: 16px;
+      }
+      .greet p:last-child {
+        margin-bottom: 0;
+      }
+      .greet strong {
+        color: #fff;
+        font-weight: 600;
+      }
 
-  /* ===== TOC ===== */
-  .toc{margin:64px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:30px 0;display:grid;grid-template-columns:repeat(2,1fr);gap:4px 48px}
-  .toc-h{grid-column:1/-1;font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--mut);
-    text-transform:uppercase;margin-bottom:14px}
-  .toc a{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--txt2);
-    font-size:14px;padding:9px 0;border-bottom:1px solid rgba(44,34,56,.5);transition:.22s}
-  .toc a:hover{color:var(--heat2);padding-left:8px}
-  .toc .sx{font-family:var(--mono);font-size:15px;color:var(--heat);width:22px;text-align:center;flex-shrink:0}
+      /* ===== TOC ===== */
+      .toc {
+        margin: 64px 0 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 30px 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px 48px;
+      }
+      .toc-h {
+        grid-column: 1/-1;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        color: var(--mut);
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .toc a {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        color: var(--txt2);
+        font-size: 14px;
+        padding: 9px 0;
+        border-bottom: 1px solid rgba(44, 34, 56, 0.5);
+        transition: 0.22s;
+      }
+      .toc a:hover {
+        color: var(--heat2);
+        padding-left: 8px;
+      }
+      .toc .sx {
+        font-family: var(--mono);
+        font-size: 15px;
+        color: var(--heat);
+        width: 22px;
+        text-align: center;
+        flex-shrink: 0;
+      }
 
-  /* ===== SECTIONS ===== */
-  .sec{margin-top:88px;scroll-margin-top:30px}
-  .sec-head{display:flex;align-items:flex-start;gap:22px;margin-bottom:34px}
-  .sec-mark{flex-shrink:0;width:64px;height:64px;border-radius:14px;
-    background:linear-gradient(150deg,var(--panel2),var(--ink2));border:1px solid var(--line2);
-    display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--heat2);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 30px -18px rgba(255,77,28,.5)}
-  .sec-head-txt{flex:1;padding-top:3px}
-  .sec-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.28em;color:var(--heat);
-    text-transform:uppercase;margin-bottom:7px}
-  .sec-title{font-family:var(--disp);font-size:40px;line-height:.95;letter-spacing:.02em;color:var(--stock)}
-  .sec-sub{font-size:15px;color:var(--mut);margin-top:9px;max-width:600px}
+      /* ===== SECTIONS ===== */
+      .sec {
+        margin-top: 88px;
+        scroll-margin-top: 30px;
+      }
+      .sec-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 22px;
+        margin-bottom: 34px;
+      }
+      .sec-mark {
+        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        background: linear-gradient(150deg, var(--panel2), var(--ink2));
+        border: 1px solid var(--line2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: var(--heat2);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.05),
+          0 12px 30px -18px rgba(255, 77, 28, 0.5);
+      }
+      .sec-head-txt {
+        flex: 1;
+        padding-top: 3px;
+      }
+      .sec-kicker {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.28em;
+        color: var(--heat);
+        text-transform: uppercase;
+        margin-bottom: 7px;
+      }
+      .sec-title {
+        font-family: var(--disp);
+        font-size: 40px;
+        line-height: 0.95;
+        letter-spacing: 0.02em;
+        color: var(--stock);
+      }
+      .sec-sub {
+        font-size: 15px;
+        color: var(--mut);
+        margin-top: 9px;
+        max-width: 600px;
+      }
 
-  .prose{font-size:16px;color:#c8bcd0;margin-bottom:16px;max-width:760px}
-  .prose strong{color:#fff;font-weight:600}
+      .prose {
+        font-size: 16px;
+        color: #c8bcd0;
+        margin-bottom: 16px;
+        max-width: 760px;
+      }
+      .prose strong {
+        color: #fff;
+        font-weight: 600;
+      }
 
-  /* play-card styled content block */
-  .play{background:linear-gradient(165deg,var(--panel),var(--ink2));border:1px solid var(--line);
-    border-radius:16px;padding:26px 28px;margin-bottom:18px;position:relative;transition:.25s;
-    box-shadow:0 20px 50px -35px rgba(0,0,0,.9)}
-  .play:hover{border-color:var(--line2);transform:translateY(-2px)}
-  .play-lead{font-size:15.5px;color:#cdc1d6;max-width:740px}
-  .play-lead strong{color:#fff;font-weight:600}
+      /* play-card styled content block */
+      .play {
+        background: linear-gradient(165deg, var(--panel), var(--ink2));
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 26px 28px;
+        margin-bottom: 18px;
+        position: relative;
+        transition: 0.25s;
+        box-shadow: 0 20px 50px -35px rgba(0, 0, 0, 0.9);
+      }
+      .play:hover {
+        border-color: var(--line2);
+        transform: translateY(-2px);
+      }
+      .play-lead {
+        font-size: 15.5px;
+        color: #cdc1d6;
+        max-width: 740px;
+      }
+      .play-lead strong {
+        color: #fff;
+        font-weight: 600;
+      }
 
-  .play-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:14px;
-    border-bottom:1px solid var(--line)}
-  .ph-tag{font-family:var(--disp);font-size:30px;color:var(--heat);min-width:30px;line-height:1}
-  .ph-tag.sym{font-family:var(--body);font-size:22px;color:var(--heat2)}
-  .ph-name{font-size:16px;font-weight:600;color:#fff;flex:1}
-  .ph-note{font-family:var(--mono);font-size:9.5px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase}
-  .chip{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
-    padding:5px 11px;border-radius:30px;border:1px solid;flex-shrink:0}
-  .chip-hero{color:var(--gold);border-color:rgba(255,207,77,.35);background:rgba(255,207,77,.07)}
-  .chip-tmpl{color:var(--blu);border-color:rgba(94,200,245,.3);background:rgba(94,200,245,.06)}
-  .chip-later{color:var(--mut);border-color:var(--line2);background:rgba(255,255,255,.02)}
+      .play-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--line);
+      }
+      .ph-tag {
+        font-family: var(--disp);
+        font-size: 30px;
+        color: var(--heat);
+        min-width: 30px;
+        line-height: 1;
+      }
+      .ph-tag.sym {
+        font-family: var(--body);
+        font-size: 22px;
+        color: var(--heat2);
+      }
+      .ph-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        flex: 1;
+      }
+      .ph-note {
+        font-family: var(--mono);
+        font-size: 9.5px;
+        color: var(--mut);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .chip {
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 5px 11px;
+        border-radius: 30px;
+        border: 1px solid;
+        flex-shrink: 0;
+      }
+      .chip-hero {
+        color: var(--gold);
+        border-color: rgba(255, 207, 77, 0.35);
+        background: rgba(255, 207, 77, 0.07);
+      }
+      .chip-tmpl {
+        color: var(--blu);
+        border-color: rgba(94, 200, 245, 0.3);
+        background: rgba(94, 200, 245, 0.06);
+      }
+      .chip-later {
+        color: var(--mut);
+        border-color: var(--line2);
+        background: rgba(255, 255, 255, 0.02);
+      }
 
-  /* item rows */
-  .rows{display:flex;flex-direction:column;gap:9px;margin:4px 0}
-  .row{display:flex;gap:16px;padding:13px 16px;background:rgba(255,255,255,.018);
-    border:1px solid var(--line);border-radius:11px;align-items:flex-start}
-  .row-k{font-family:var(--mono);font-size:11px;color:var(--heat2);letter-spacing:.04em;
-    min-width:140px;flex-shrink:0;padding-top:2px}
-  .row-v{font-size:14px;color:#b3a6bd;flex:1}
-  .row-v strong{color:#fff;font-weight:600}
-  .label{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--heat2);
-    text-transform:uppercase;margin:22px 0 12px}
+      /* item rows */
+      .rows {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin: 4px 0;
+      }
+      .row {
+        display: flex;
+        gap: 16px;
+        padding: 13px 16px;
+        background: rgba(255, 255, 255, 0.018);
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        align-items: flex-start;
+      }
+      .row-k {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--heat2);
+        letter-spacing: 0.04em;
+        min-width: 140px;
+        flex-shrink: 0;
+        padding-top: 2px;
+      }
+      .row-v {
+        font-size: 14px;
+        color: #b3a6bd;
+        flex: 1;
+      }
+      .row-v strong {
+        color: #fff;
+        font-weight: 600;
+      }
+      .label {
+        font-family: var(--mono);
+        font-size: 9.5px;
+        letter-spacing: 0.2em;
+        color: var(--heat2);
+        text-transform: uppercase;
+        margin: 22px 0 12px;
+      }
 
-  /* bullets */
-  .blist{display:flex;flex-direction:column;gap:11px;margin:18px 0}
-  .bl{display:flex;gap:14px;font-size:15px;color:#bdb0c6;align-items:flex-start}
-  .bl .bk{flex-shrink:0;width:20px;text-align:center;color:var(--heat);font-family:var(--mono);padding-top:1px}
-  .bl.no .bk{color:var(--ember)}
-  .bl strong{color:#fff;font-weight:600}
+      /* bullets */
+      .blist {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        margin: 18px 0;
+      }
+      .bl {
+        display: flex;
+        gap: 14px;
+        font-size: 15px;
+        color: #bdb0c6;
+        align-items: flex-start;
+      }
+      .bl .bk {
+        flex-shrink: 0;
+        width: 20px;
+        text-align: center;
+        color: var(--heat);
+        font-family: var(--mono);
+        padding-top: 1px;
+      }
+      .bl.no .bk {
+        color: var(--ember);
+      }
+      .bl strong {
+        color: #fff;
+        font-weight: 600;
+      }
 
-  /* callout */
-  .call{border-left:3px solid var(--heat);background:linear-gradient(100deg,rgba(255,77,28,.08),transparent 80%);
-    border-radius:0 14px 14px 0;padding:20px 24px;margin:24px 0;font-size:15.5px;color:#e2d3c8;font-style:italic}
-  .call strong{color:#fff;font-style:normal;font-weight:600}
+      /* callout */
+      .call {
+        border-left: 3px solid var(--heat);
+        background: linear-gradient(
+          100deg,
+          rgba(255, 77, 28, 0.08),
+          transparent 80%
+        );
+        border-radius: 0 14px 14px 0;
+        padding: 20px 24px;
+        margin: 24px 0;
+        font-size: 15.5px;
+        color: #e2d3c8;
+        font-style: italic;
+      }
+      .call strong {
+        color: #fff;
+        font-style: normal;
+        font-weight: 600;
+      }
 
-  /* notes */
-  .note{display:flex;gap:13px;padding:15px 18px;border-radius:12px;margin:16px 0;align-items:flex-start;font-size:13.5px;line-height:1.6}
-  .note .nk{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;flex-shrink:0;padding-top:2px}
-  .note.blu{background:rgba(94,200,245,.05);border:1px solid rgba(94,200,245,.18)}
-  .note.blu .nk{color:var(--blu)} .note.blu{color:#9fb6c4}
-  .note.amb{background:rgba(255,207,77,.05);border:1px solid rgba(255,207,77,.2)}
-  .note.amb .nk{color:var(--gold)} .note.amb{color:#bdac7d}
-  .note strong{color:#fff;font-weight:600}
+      /* notes */
+      .note {
+        display: flex;
+        gap: 13px;
+        padding: 15px 18px;
+        border-radius: 12px;
+        margin: 16px 0;
+        align-items: flex-start;
+        font-size: 13.5px;
+        line-height: 1.6;
+      }
+      .note .nk {
+        font-family: var(--mono);
+        font-size: 9.5px;
+        letter-spacing: 0.1em;
+        flex-shrink: 0;
+        padding-top: 2px;
+      }
+      .note.blu {
+        background: rgba(94, 200, 245, 0.05);
+        border: 1px solid rgba(94, 200, 245, 0.18);
+      }
+      .note.blu .nk {
+        color: var(--blu);
+      }
+      .note.blu {
+        color: #9fb6c4;
+      }
+      .note.amb {
+        background: rgba(255, 207, 77, 0.05);
+        border: 1px solid rgba(255, 207, 77, 0.2);
+      }
+      .note.amb .nk {
+        color: var(--gold);
+      }
+      .note.amb {
+        color: #bdac7d;
+      }
+      .note strong {
+        color: #fff;
+        font-weight: 600;
+      }
 
-  /* taglines */
-  .tg{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:13px;padding:18px 22px;margin:12px 0}
-  .tg-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--mut);text-transform:uppercase;margin-bottom:12px}
-  .tg-l{font-family:var(--mono);font-size:14px;color:var(--gold);padding:6px 0;border-bottom:1px solid rgba(44,34,56,.5)}
-  .tg-l:last-child{border-bottom:none}
-  .tg-l::before{content:'›  ';color:var(--heat)}
+      /* taglines */
+      .tg {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        padding: 18px 22px;
+        margin: 12px 0;
+      }
+      .tg-h {
+        font-family: var(--mono);
+        font-size: 9.5px;
+        letter-spacing: 0.18em;
+        color: var(--mut);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .tg-l {
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--gold);
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(44, 34, 56, 0.5);
+      }
+      .tg-l:last-child {
+        border-bottom: none;
+      }
+      .tg-l::before {
+        content: "›  ";
+        color: var(--heat);
+      }
 
-  /* milestones */
-  .ms{display:flex;align-items:center;gap:20px;padding:20px 22px;background:linear-gradient(150deg,var(--panel),var(--ink2));
-    border:1px solid var(--line);border-radius:14px;margin-bottom:11px}
-  .ms-pct{font-family:var(--disp);font-size:40px;color:var(--heat);min-width:74px;line-height:.9}
-  .ms-b{flex:1}
-  .ms-n{font-size:15px;font-weight:600;color:#fff;margin-bottom:3px}
-  .ms-d{font-size:13.5px;color:var(--mut)}
-  .ms-amt{font-family:var(--mono);font-size:13px;color:var(--gold);flex-shrink:0}
+      /* milestones */
+      .ms {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 22px;
+        background: linear-gradient(150deg, var(--panel), var(--ink2));
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        margin-bottom: 11px;
+      }
+      .ms-pct {
+        font-family: var(--disp);
+        font-size: 40px;
+        color: var(--heat);
+        min-width: 74px;
+        line-height: 0.9;
+      }
+      .ms-b {
+        flex: 1;
+      }
+      .ms-n {
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 3px;
+      }
+      .ms-d {
+        font-size: 13.5px;
+        color: var(--mut);
+      }
+      .ms-amt {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--gold);
+        flex-shrink: 0;
+      }
 
-  hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--line2),transparent);margin:0}
+      hr.div {
+        border: none;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--line2),
+          transparent
+        );
+        margin: 0;
+      }
 
-  /* footer */
-  .foot{text-align:center;margin-top:96px;padding-top:50px;border-top:1px solid var(--line)}
-  .foot .wm{font-family:var(--disp);font-size:48px;letter-spacing:.02em}
-  .foot .wm .frenzy{color:var(--heat)}
-  .foot .ws{font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.14em;margin-top:8px}
-  .foot p{font-size:14px;color:#9c8fa6;max-width:460px;margin:18px auto 0}
+      /* footer */
+      .foot {
+        text-align: center;
+        margin-top: 96px;
+        padding-top: 50px;
+        border-top: 1px solid var(--line);
+      }
+      .foot .wm {
+        font-family: var(--disp);
+        font-size: 48px;
+        letter-spacing: 0.02em;
+      }
+      .foot .wm .frenzy {
+        color: var(--heat);
+      }
+      .foot .ws {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--mut);
+        letter-spacing: 0.14em;
+        margin-top: 8px;
+      }
+      .foot p {
+        font-size: 14px;
+        color: #9c8fa6;
+        max-width: 460px;
+        margin: 18px auto 0;
+      }
 
-  /* back to top */
-  #top{position:fixed;bottom:26px;right:26px;width:50px;height:50px;border-radius:14px;z-index:80;
-    background:linear-gradient(150deg,var(--heat),var(--ember));border:none;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px) scale(.9);
-    transition:.3s;box-shadow:0 12px 34px -8px rgba(255,77,28,.7);pointer-events:none}
-  #top.on{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-  #top:hover{transform:translateY(-3px) scale(1.04)}
-  #top svg{display:block}
+      /* back to top */
+      #top {
+        position: fixed;
+        bottom: 26px;
+        right: 26px;
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        z-index: 80;
+        background: linear-gradient(150deg, var(--heat), var(--ember));
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: translateY(16px) scale(0.9);
+        transition: 0.3s;
+        box-shadow: 0 12px 34px -8px rgba(255, 77, 28, 0.7);
+        pointer-events: none;
+      }
+      #top.on {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+      #top:hover {
+        transform: translateY(-3px) scale(1.04);
+      }
+      #top svg {
+        display: block;
+      }
 
-  /* reveal */
-  .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
-  .rv.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}#top{transition:none}}
+      /* reveal */
+      .rv {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .rv {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        #top {
+          transition: none;
+        }
+      }
 
-  @media(max-width:680px){
-    .toc{grid-template-columns:1fr}
-    .sec-mark{width:52px;height:52px;font-size:24px}
-    .sec-title{font-size:32px}
-    .greet{padding:28px 24px}
-    .row{flex-direction:column;gap:5px}.row-k{min-width:0}
-    .ms{flex-wrap:wrap}.ms-amt{width:100%}
-  }
-</style>
-</head>
-<body>
-<div id="bar"></div>
-<button id="top" aria-label="Back to top">
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M4.5 8.5 9 4l4.5 4.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</button>
+      @media (max-width: 680px) {
+        .toc {
+          grid-template-columns: 1fr;
+        }
+        .sec-mark {
+          width: 52px;
+          height: 52px;
+          font-size: 24px;
+        }
+        .sec-title {
+          font-size: 32px;
+        }
+        .greet {
+          padding: 28px 24px;
+        }
+        .row {
+          flex-direction: column;
+          gap: 5px;
+        }
+        .row-k {
+          min-width: 0;
+        }
+        .ms {
+          flex-wrap: wrap;
+        }
+        .ms-amt {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bar"></div>
+    <button id="top" aria-label="Back to top">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path
+          d="M9 14V4M4.5 8.5 9 4l4.5 4.5"
+          stroke="#fff"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
 
-<div class="wrap">
+    <div class="wrap">
+      <!-- HERO -->
+      <header class="hero">
+        <div class="suits-bg">
+          <span>&#9711;</span><span>&#9651;</span><span>&#10010;</span
+          ><span>&#9633;</span><span>&#9733;</span>
+        </div>
+        <div class="eyebrow">Brand Identity Brief</div>
+        <div class="wordmark">
+          <span class="whot">WHOT</span><span class="frenzy">FRENZY</span>
+        </div>
+        <div class="hero-rule"></div>
+        <div class="hero-tag">Confidential &middot; 2026</div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="suits-bg"><span>&#9711;</span><span>&#9651;</span><span>&#10010;</span><span>&#9633;</span><span>&#9733;</span></div>
-    <div class="eyebrow">Brand Identity Brief</div>
-    <div class="wordmark"><span class="whot">WHOT</span><span class="frenzy">FRENZY</span></div>
-    <div class="hero-rule"></div>
-    <div class="hero-tag">Confidential &middot; 2026</div>
+        <div class="greet rv">
+          <p>
+            Hey, really glad you're the one doing this. Here's everything you
+            need to get going on the WhotFrenzy brand identity. I've laid out
+            what the product is, the feeling I'm reaching for, a couple of
+            things I really want us to avoid, and the full list of stuff I need
+            designed.
+          </p>
+          <p>
+            Honest truth: I don't have a fixed picture in my head, and I don't
+            want to box you in.
+            <strong>Take charge of this. It's yours to run.</strong> How you
+            approach it, where you start, what order you work in, all of that is
+            your call. I just want to stay in the loop as it comes together so
+            we can react to things early. Bring your ideas, show me directions,
+            and we'll shape it together.
+          </p>
+          <p>
+            One quick thing:
+            <strong
+              >the colours and fonts in this document aren't the brand</strong
+            >, it's just the look of my own notes. Defining the actual
+            WhotFrenzy palette, type and logo is the whole point of the job.
+            We're starting from a blank page.
+          </p>
+        </div>
+      </header>
 
-    <div class="greet rv">
-      <p>Hey, really glad you're the one doing this. Here's everything you need to get going on the WhotFrenzy brand identity. I've laid out what the product is, the feeling I'm reaching for, a couple of things I really want us to avoid, and the full list of stuff I need designed.</p>
-      <p>Honest truth: I don't have a fixed picture in my head, and I don't want to box you in. <strong>Take charge of this. It's yours to run.</strong> How you approach it, where you start, what order you work in, all of that is your call. I just want to stay in the loop as it comes together so we can react to things early. Bring your ideas, show me directions, and we'll shape it together.</p>
-      <p>One quick thing: <strong>the colours and fonts in this document aren't the brand</strong>, it's just the look of my own notes. Defining the actual WhotFrenzy palette, type and logo is the whole point of the job. We're starting from a blank page.</p>
+      <!-- TOC -->
+      <nav class="toc rv">
+        <div class="toc-h">What's inside</div>
+        <a href="#s01"><span class="sx">&#9711;</span> What WhotFrenzy Is</a>
+        <a href="#s02"
+          ><span class="sx">&#9651;</span> The Feeling &amp; What to Avoid</a
+        >
+        <a href="#s03"><span class="sx">&#10010;</span> Logo</a>
+        <a href="#s04"><span class="sx">&#9633;</span> Colour</a>
+        <a href="#s05"><span class="sx">&#9733;</span> Typography</a>
+        <a href="#s06"><span class="sx">&#9711;</span> The Opening Screen</a>
+        <a href="#s07"><span class="sx">&#9651;</span> Whot Cards</a>
+        <a href="#s08"><span class="sx">&#10010;</span> Skill Badges</a>
+        <a href="#s09"><span class="sx">&#9633;</span> Social Graphics</a>
+        <a href="#s10"
+          ><span class="sx">&#9733;</span> Banners &amp; Business Card</a
+        >
+        <a href="#s11"><span class="sx">&#9711;</span> App Store Assets</a>
+        <a href="#s12"><span class="sx">&#9651;</span> Budget &amp; Payment</a>
+        <a href="#s13"
+          ><span class="sx">&#10010;</span> Rights, Files &amp; Rules</a
+        >
+      </nav>
+
+      <!-- 01 -->
+      <section class="sec rv" id="s01">
+        <div class="sec-head">
+          <div class="sec-mark">&#9711;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">01 &middot; Background</div>
+            <h2 class="sec-title">What WhotFrenzy Is</h2>
+            <div class="sec-sub">
+              Just enough to design well. Here's the gist of the product.
+            </div>
+          </div>
+        </div>
+        <p class="prose">
+          WhotFrenzy is a serious, competitive mobile platform built around
+          <strong>Whot</strong>, the classic Nigerian card game millions already
+          play. It's not a casual card game and it's not a gambling app. It's a
+          skill competition: players go head to head in fast 1v1 matches, climb
+          leaderboards, win real prizes, and build lasting status as champions.
+        </p>
+        <p class="prose">
+          It's a nightly thing. There's a tournament every evening that crowns a
+          champion and celebrates the best players. There's a strong community
+          and "best player you know" energy to it too. We're launching in
+          Nigeria first.
+        </p>
+        <div class="call">
+          <strong>The shorthand in my head:</strong> WhotFrenzy is competitive
+          energy with Nigerian cultural heat. Think a serious competition or
+          e-sports brand that grew up in Lagos and actually plays Whot.
+        </div>
+        <div class="note amb">
+          <div class="nk">NAME STORY</div>
+          <div>
+            One bit of background that might be useful, not as something to
+            spell out anywhere, just to keep in the back of your mind for the
+            feeling. The name plays on
+            <strong>"Whot and Friends."</strong> Underneath all the competition,
+            that's really what it's about: people playing the game they grew up
+            on, with the people they know. The brand can be fierce and
+            competitive on the surface, but there's warmth and community sitting
+            right under it. If that spirit quietly comes through somewhere,
+            great.
+          </div>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 02 -->
+      <section class="sec rv" id="s02">
+        <div class="sec-head">
+          <div class="sec-mark">&#9651;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">02 &middot; Direction</div>
+            <h2 class="sec-title">The Feeling &amp; What to Avoid</h2>
+            <div class="sec-sub">
+              The vibe I'm chasing, and a few traps I really want us to dodge.
+            </div>
+          </div>
+        </div>
+        <p class="label">The feeling</p>
+        <p class="prose">
+          Competitive fire. Confidence. Warm, but not soft. Opening the app
+          should feel like stepping into an arena, not opening a utility. It
+          takes the player seriously, celebrates skill, and always points
+          forward. I want it to look like it belongs next to the best
+          competition brands anywhere, while feeling unmistakably Nigerian.
+        </p>
+        <p class="label">What I really don't want it to look like</p>
+        <div class="blist">
+          <div class="bl no">
+            <div class="bk">&times;</div>
+            <div>
+              <strong>Not a casino.</strong> No spinning wheels, coin stacks,
+              "WIN!" banners, dice, nothing that reads as gambling. This is a
+              skill competition and the look has to back that up.
+            </div>
+          </div>
+          <div class="bl no">
+            <div class="bk">&times;</div>
+            <div>
+              <strong>Not a casual card game.</strong> No wood-table
+              backgrounds, rounded playful fonts, or bright primary-colour
+              palettes. The existing Nigerian Whot apps look like that, and I
+              want us to look like what they wish they could be.
+            </div>
+          </div>
+          <div class="bl no">
+            <div class="bk">&times;</div>
+            <div>
+              <strong>Not a fintech app.</strong> Clean and corporate kills the
+              energy. People should feel a bit of heat when they open it, not
+              the calm of a banking app.
+            </div>
+          </div>
+          <div class="bl no">
+            <div class="bk">&times;</div>
+            <div>
+              <strong>Not generically "African-themed."</strong> No Ankara
+              patterns, no map-of-Africa outlines, no surface-level cultural
+              decoration. The Nigerian identity should come through in energy
+              and attitude, not decoration pasted on top.
+            </div>
+          </div>
+        </div>
+        <div class="note blu">
+          <div class="nk">HOW WE'LL WORK</div>
+          <div>
+            You drive. I'd just love to see things as they develop, early
+            directions, rough concepts, whatever, so I can give quick reactions
+            and we don't go too far down a path before checking in. Otherwise,
+            your process is your process.
+          </div>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 03 -->
+      <section class="sec rv" id="s03">
+        <div class="sec-head">
+          <div class="sec-mark">&#10010;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">03 &middot; Core</div>
+            <h2 class="sec-title">Logo</h2>
+            <div class="sec-sub">From scratch. There's nothing existing.</div>
+          </div>
+        </div>
+        <div class="play">
+          <p class="play-lead">
+            The name is <strong>WhotFrenzy</strong>. It needs to work
+            everywhere: a phone splash screen, a tiny app icon on a home screen,
+            on the app interface, on social graphics, and in a single colour for
+            stamps and merch. I'll need the main logo plus whatever supporting
+            versions you think it needs to live in all those places, including a
+            strong <strong>app icon</strong> and a one-colour black and white
+            version. How you get there is up to you.
+          </p>
+          <div class="note blu">
+            <div class="nk">APP ICON</div>
+            <div>
+              The icon has to work on both <strong>iOS and Android</strong>. I'd
+              also love it to support the newer phone feature where the icon
+              adapts to the colour the user themes their home screen with, so it
+              would help to have a simple, bold
+              <strong>single-colour (monochrome) version of the mark</strong>
+              alongside the full-colour one, delivered as vector. Happy to share
+              the exact size and export specs with you once we're building.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 04 -->
+      <section class="sec rv" id="s04">
+        <div class="sec-head">
+          <div class="sec-mark">&#9633;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">04 &middot; Core</div>
+            <h2 class="sec-title">Colour</h2>
+            <div class="sec-sub">
+              Yours to define, with one reference point.
+            </div>
+          </div>
+        </div>
+        <div class="play">
+          <p class="play-lead">
+            The app screens are already being designed, and I'll share those
+            with you as <strong>visual reference</strong>. This isn't a total
+            blank page on colour. I'd really like you to
+            <strong
+              >take inspiration from those UI/UX references so the brand palette
+              aligns with the app</strong
+            >
+            and they feel like the same world. Read the screens, pull the
+            direction and energy from them, and build a palette that sits
+            naturally alongside what's there. I'm just not handing over exact
+            colour codes, I'd rather you interpret it. When it's done, give me
+            the final palette with proper values so the team can use it
+            consistently.
+          </p>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 05 -->
+      <section class="sec rv" id="s05">
+        <div class="sec-head">
+          <div class="sec-mark">&#9733;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">05 &middot; Core</div>
+            <h2 class="sec-title">Typography</h2>
+            <div class="sec-sub">
+              A type system for a product full of numbers.
+            </div>
+          </div>
+        </div>
+        <div class="play">
+          <p class="play-lead">
+            There are a lot of numbers in this product: scores, prize amounts,
+            countdowns, win streaks. So how numbers look matters as much as
+            headlines do. I need a type system that feels bold and competitive
+            at big sizes and stays clean and readable small on a phone. Pick
+            what works and show me how it all fits together. One ask: please use
+            fonts we can legally license for app, web and print, and let me know
+            the licence terms for anything that isn't free for commercial use.
+          </p>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 06 -->
+      <section class="sec rv" id="s06">
+        <div class="sec-head">
+          <div class="sec-mark">&#9711;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">06 &middot; Asset</div>
+            <h2 class="sec-title">The Opening Screen</h2>
+            <div class="sec-sub">
+              The first frame people see every time they open the app.
+            </div>
+          </div>
+        </div>
+        <div class="play">
+          <p class="play-lead">
+            This is the one moment the logo gets the whole screen to itself, the
+            loading or opening screen. I want it to feel like walking into an
+            arena, a little ritual, not a loading bar. It's where the logo,
+            colour and type all show off together. It's portrait, and there
+            should be room for a single line of rotating copy under the logo
+            (I'll supply the lines). If you have a feel for how it should come
+            alive or animate, drop me a note on the intended movement so the dev
+            team can carry it through.
+          </p>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 07 -->
+      <section class="sec rv" id="s07">
+        <div class="sec-head">
+          <div class="sec-mark">&#9651;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">07 &middot; Asset</div>
+            <h2 class="sec-title">Whot Cards</h2>
+            <div class="sec-sub">
+              The cards are the product. Premium, and readable at speed.
+            </div>
+          </div>
+        </div>
+        <div class="play">
+          <p class="play-lead">
+            Whot is played with a <strong>50-card deck</strong> across five
+            shapes (Circle, Triangle, Cross, Square and Star), plus the special
+            <strong>Whot</strong> card. The big thing to know: during a match,
+            cards have to be readable <strong>at a glance, fast</strong>. So
+            they need to look premium and distinctive, but never so busy that
+            the shape and number get hard to read mid-game. Here's the set I
+            need:
+          </p>
+          <p class="label">The card treatments</p>
+          <div class="rows">
+            <div class="row">
+              <div class="row-k">Normal card</div>
+              <div class="row-v">
+                One consistent look for standard number cards across all five
+                shapes.
+              </div>
+            </div>
+            <div class="row">
+              <div class="row-k">Special card</div>
+              <div class="row-v">
+                A distinct look for the action cards, so players can tell at a
+                glance a card is special. One special-card style.
+              </div>
+            </div>
+            <div class="row">
+              <div class="row-k">The Whot card (20)</div>
+              <div class="row-v">
+                The wild card, numbered 20, played to call a shape. It's the
+                single most special card in the deck and should have its own
+                standout design, clearly above everything else.
+              </div>
+            </div>
+            <div class="row">
+              <div class="row-k">Card back</div>
+              <div class="row-v">
+                The face-down back. It's on screen constantly, so it needs to
+                look great and feel like the brand.
+              </div>
+            </div>
+          </div>
+          <div class="call">
+            <strong>One real ask:</strong> please don't take inspiration from
+            existing Whot apps or other card-game apps. I'd love this to feel
+            like ours, not borrowed.
+          </div>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 08 -->
+      <section class="sec rv" id="s08">
+        <div class="sec-head">
+          <div class="sec-mark">&#10010;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">08 &middot; Asset</div>
+            <h2 class="sec-title">Skill Badges</h2>
+            <div class="sec-sub">
+              Four badges, one family. They're proof of achievement players show
+              off.
+            </div>
+          </div>
+        </div>
+        <div class="play">
+          <p class="play-lead">
+            Badges live on a player's profile as proof of what they've pulled
+            off, basically a trophy room. I need four for now. They should feel
+            like one family (a shared look) while each clearly stands for its
+            own thing.
+            <strong
+              >What each one looks like is entirely your creative call</strong
+            >, I'm just giving you the name and what it means.
+          </p>
+          <p class="label">The four</p>
+          <div class="rows">
+            <div class="row">
+              <div class="row-k">Chain God</div>
+              <div class="row-v">
+                For the longest chain of cards played back to back without the
+                opponent getting a turn. Think: an unbroken chain, momentum, a
+                streak.
+              </div>
+            </div>
+            <div class="row">
+              <div class="row-k">Unbeatable</div>
+              <div class="row-v">
+                For the longest run of consecutive wins. Think: dominance, an
+                unbroken winning streak.
+              </div>
+            </div>
+            <div class="row">
+              <div class="row-k">The Machine</div>
+              <div class="row-v">
+                For relentless, efficient, fast play across a full session.
+                Think: precision, a machine that doesn't stop.
+              </div>
+            </div>
+            <div class="row">
+              <div class="row-k">Invincible</div>
+              <div class="row-v">
+                The big one. A perfect session, every game won, zero losses. The
+                rarest, most prestigious. It should clearly look a tier above
+                the other three.
+              </div>
+            </div>
+          </div>
+          <div class="note amb">
+            <div class="nk">ONE THING</div>
+            <div>
+              For <strong>Invincible</strong>, if the badge shows a number,
+              build that number as its own swappable element rather than baking
+              it into the art. The target shifts over time, so I want to be able
+              to change the number without redrawing the whole badge.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 09 -->
+      <section class="sec rv" id="s09">
+        <div class="sec-head">
+          <div class="sec-mark">&#9633;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">09 &middot; Application</div>
+            <h2 class="sec-title">Social Graphics &mdash; Five</h2>
+            <div class="sec-sub">
+              Two fixed hero pieces and three reusable templates I'll fill again
+              and again.
+            </div>
+          </div>
+        </div>
+        <div class="call">
+          Before the list, the thing I care about most here. How these
+          <em>look</em> is hugely important to me. Hugely. I can't overstate it.
+          They have to look genuinely amazing, the kind of work that makes
+          someone stop scrolling. <strong>But</strong> looking amazing can't be
+          the whole job. A lot of beautiful designs, the kind that fill
+          designers' portfolios, don't actually <em>do</em> anything: they don't
+          pull the eye to the point and they don't get anyone to take an action.
+          So I need both: stunning to look at <em>and</em> built to convert.
+          Each one has a single job (get a sign-up, get a share, make someone
+          want in), and the design has to drive the viewer toward that action.
+          Beautiful and effective, not one or the other.
+        </div>
+        <p class="prose">
+          Three of these are <strong>templates</strong>, a designed shell where
+          only the name, photo, stat or amount changes, because we'll be posting
+          fresh results often. Please design for the main platforms (Instagram,
+          X, WhatsApp status, Facebook); plan for square and vertical/story
+          formats and we'll confirm exact sizes.
+        </p>
+
+        <div class="play">
+          <div class="play-head">
+            <div class="ph-tag">1</div>
+            <div class="ph-name">Champion Announcement</div>
+            <div class="ph-note">Used often</div>
+            <div class="chip chip-tmpl">Template</div>
+          </div>
+          <p class="play-lead">
+            Announces the night's champion. The one I'll use most. Needs clear
+            space for the winner's name, their photo, and the prize amount, and
+            it should make people want to be next.
+          </p>
+        </div>
+
+        <div class="play">
+          <div class="play-head">
+            <div class="ph-tag">2</div>
+            <div class="ph-name">Launch Offer</div>
+            <div class="ph-note">Sign-up driver</div>
+            <div class="chip chip-hero">Hero</div>
+          </div>
+          <p class="play-lead">
+            Our launch headline, built to get people to sign up. The whole job
+            of this one is conversion: make the offer impossible to scroll past
+            and obvious what to do next.
+          </p>
+        </div>
+
+        <div class="play">
+          <div class="play-head">
+            <div class="ph-tag">3</div>
+            <div class="ph-name">Invincible Promo</div>
+            <div class="ph-note">The dream</div>
+            <div class="chip chip-hero">Hero</div>
+          </div>
+          <p class="play-lead">
+            This is the aspirational one. A perfect session, win every game,
+            lose none, for the biggest prize on the platform. It is the "wait,
+            is that even possible?" graphic that makes people want to try. I
+            want this built as a
+            <strong>reusable template, not a one-off</strong>, and here is the
+            honest reason why. The target for Invincible is going to change as
+            we grow. It starts at one number of wins and moves up later, and the
+            prize figure could move too. If those numbers are baked into the
+            artwork, every change means paying for a fresh design. If the win
+            count and the amount are their own swappable layers in a clean
+            template, I just drop in the new number myself and the graphic keeps
+            working for years. So please treat the figures as editable fields
+            sitting on top of a design that stays the same.
+          </p>
+        </div>
+
+        <div class="play">
+          <div class="play-head">
+            <div class="ph-tag">4</div>
+            <div class="ph-name">Skill Spotlight</div>
+            <div class="ph-note">Rotates</div>
+            <div class="chip chip-tmpl">Template</div>
+          </div>
+          <p class="play-lead">
+            Highlights a standout skill feat from a session, rotating across
+            Chain God, Unbeatable and The Machine. This is the one that shows
+            the platform is about skill, not luck. Needs space for the skill
+            name, the stat, and the player.
+          </p>
+        </div>
+
+        <div class="play">
+          <div class="play-head">
+            <div class="ph-tag">5</div>
+            <div class="ph-name">Invitation</div>
+            <div class="ph-note">Share driver</div>
+            <div class="chip chip-tmpl">Template</div>
+          </div>
+          <p class="play-lead">
+            Gets existing players to bring in the best Whot players they know.
+            Its whole job is to get a share or an invite sent, so make the
+            action clear and worth doing.
+          </p>
+          <div class="note blu">
+            <div class="nk">WORDING</div>
+            <div>
+              Please never use the word <strong>"referral"</strong> or "refer a
+              friend." We always say <strong>invitation</strong> or
+              <strong>invite</strong>. Small thing, but it matters to us.
+            </div>
+          </div>
+        </div>
+
+        <p class="label">Taglines you can use</p>
+        <p class="prose">
+          You don't have to write the copy from scratch. Here are lines from our
+          own bank that fit the promo and banner pieces, so feel free to pull
+          from these or work them into the designs. They carry the WhotFrenzy
+          voice, so they're a safe place to start.
+        </p>
+        <div class="tg">
+          <div class="tg-h">For the launch / promo / banner pieces</div>
+          <div class="tg-l">Your skills. Real rewards. One session.</div>
+          <div class="tg-l">This is what serious Whot looks like.</div>
+          <div class="tg-l">Champions are made one elimination at a time.</div>
+          <div class="tg-l">One session can change everything.</div>
+          <div class="tg-l">Nobody remembers who almost won.</div>
+          <div class="tg-l">The Frenzy doesn't wait.</div>
+          <div class="tg-l">The window is open. Are you?</div>
+        </div>
+        <div class="tg">
+          <div class="tg-h">For the Invincible piece</div>
+          <div class="tg-l">
+            Greatness doesn't announce itself. It eliminates.
+          </div>
+          <div class="tg-l">
+            You didn't come this far to watch someone else win.
+          </div>
+        </div>
+        <div class="tg">
+          <div class="tg-h">For the invitation piece</div>
+          <div class="tg-l">Invite the best Whot player you know.</div>
+          <div class="tg-l">The Whot masters are waiting.</div>
+        </div>
+
+        <div class="note amb">
+          <div class="nk">HEADS UP</div>
+          <div>
+            A couple of these need things I'm still working out, namely
+            <strong>player photos or portraits</strong> and a few
+            <strong>final amounts</strong>. Just leave those as clearly marked
+            placeholders for now and I'll confirm, so nothing has to be redone.
+          </div>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 10 -->
+      <section class="sec rv" id="s10">
+        <div class="sec-head">
+          <div class="sec-mark">&#9733;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">10 &middot; Application</div>
+            <h2 class="sec-title">Banners &amp; Business Card</h2>
+            <div class="sec-sub">
+              A bit more reach for launch, plus a physical piece.
+            </div>
+          </div>
+        </div>
+        <div class="play">
+          <div class="play-head">
+            <div class="ph-tag sym">&#9724;</div>
+            <div class="ph-name">2 promotional banners</div>
+            <div class="ph-note">Digital placement</div>
+          </div>
+          <p class="play-lead">
+            Two promo banners, same standard as the social graphics above: they
+            need to look <strong>excellent</strong> and they need to
+            <strong>work</strong>. Each should have one clear point and pull the
+            viewer toward one action. You can use the taglines above. We'll
+            confirm exact sizes and where they'll run, so build them flexible
+            for common banner ratios.
+          </p>
+        </div>
+        <div class="play">
+          <div class="play-head">
+            <div class="ph-tag sym">&#9724;</div>
+            <div class="ph-name">1 business card</div>
+            <div class="ph-note">Print-ready, both sides</div>
+          </div>
+          <p class="play-lead">
+            A WhotFrenzy business card, print-ready, both sides. A nice chance
+            to show the brand working in print.
+          </p>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 11 -->
+      <section class="sec rv" id="s11">
+        <div class="sec-head">
+          <div class="sec-mark">&#9711;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">11 &middot; Included</div>
+            <h2 class="sec-title">App Store Assets</h2>
+            <div class="sec-sub">
+              Included in the current brief and delivered once the app screens
+              are ready.
+            </div>
+          </div>
+        </div>
+        <div class="play">
+          <div class="play-head">
+            <div class="ph-tag sym">&#9724;</div>
+            <div class="ph-name">
+              7 app store displays + store icon &amp; feature graphic
+            </div>
+            <div class="ph-note">Store listing</div>
+            <div class="chip chip-hero">Included</div>
+          </div>
+          <p class="play-lead">
+            A set of <strong>7 app store display graphics</strong>, the framed,
+            captioned screenshots that sell the app on its store page, plus the
+            store icon and feature graphic. These wrap the real app screens in
+            brand framing, so I'll hand you the finished screens to build from
+            once the app's design is done.
+          </p>
+          <div class="note amb">
+            <div class="nk">TIMING</div>
+            <div>
+              These assets are part of the current scope and will be produced as
+              soon as the finished app screens are available. Please treat them
+              as included in this engagement rather than a separate later
+              project.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 12 -->
+      <section class="sec rv" id="s12">
+        <div class="sec-head">
+          <div class="sec-mark">&#9651;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">12 &middot; Terms</div>
+            <h2 class="sec-title">Budget &amp; Payment</h2>
+            <div class="sec-sub">
+              Where I'm at on budget, and a starting idea for milestones, open
+              to your take.
+            </div>
+          </div>
+        </div>
+        <p class="prose">
+          My budget for everything above, including the app store set in section
+          11 once the app screens are ready, is <strong>$1,000</strong>. I'd
+          like to split it <strong>30 / 30 / 40</strong> across three
+          milestones. Here's a starting suggestion for what each milestone
+          covers, but you know your own process better than I do, so if you'd
+          rather group the work differently, tell me how you'd split it and
+          we'll agree together.
+        </p>
+        <div class="ms">
+          <div class="ms-pct">30%</div>
+          <div class="ms-b">
+            <div class="ms-n">Milestone 1 &middot; Foundation</div>
+            <div class="ms-d">Logo, colour and typography agreed.</div>
+          </div>
+          <div class="ms-amt">$300</div>
+        </div>
+        <div class="note blu">
+          <div class="nk">PLEASE NOTE</div>
+          <div>
+            <strong>Milestone 1 is the one I need first and fastest.</strong>
+            The team designing the app screens is waiting on the logo, and on
+            any typography decisions, so they can line the app up with the
+            brand. So the moment the logo and type are settled, I'll need to
+            hand those over to them even before the rest of the work is done. If
+            we can prioritise getting that part locked early, it unblocks the
+            whole app side.
+          </div>
+        </div>
+        <div class="ms">
+          <div class="ms-pct">30%</div>
+          <div class="ms-b">
+            <div class="ms-n">Milestone 2 &middot; Core assets</div>
+            <div class="ms-d">
+              Opening screen, the Whot cards, and the four badges.
+            </div>
+          </div>
+          <div class="ms-amt">$300</div>
+        </div>
+        <div class="ms">
+          <div class="ms-pct">40%</div>
+          <div class="ms-b">
+            <div class="ms-n">
+              Milestone 3 &middot; Application &amp; handoff
+            </div>
+            <div class="ms-d">
+              The five social graphics, two banners, business card, final files,
+              app store assets, and a short brand guide.
+            </div>
+          </div>
+          <div class="ms-amt">$400</div>
+        </div>
+        <div class="note amb">
+          <div class="nk">OPEN</div>
+          <div>
+            Totally open to your suggestion on the timeline too, roughly how
+            long you'd want for each milestone, and how many concept directions
+            and rounds of revision you'd include. Let's land on something that
+            works for both of us.
+          </div>
+        </div>
+      </section>
+
+      <hr class="div" />
+
+      <!-- 13 -->
+      <section class="sec rv" id="s13">
+        <div class="sec-head">
+          <div class="sec-mark">&#10010;</div>
+          <div class="sec-head-txt">
+            <div class="sec-kicker">13 &middot; Terms</div>
+            <h2 class="sec-title">Rights, Files &amp; Rules</h2>
+            <div class="sec-sub">
+              What I'll need to receive, who owns it, and a short list of the
+              things that matter most.
+            </div>
+          </div>
+        </div>
+
+        <p class="label">Ownership &amp; confidentiality</p>
+        <p class="prose">
+          Just a couple of quick things on ownership and keeping the work
+          private.
+        </p>
+        <div class="blist">
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              <strong>The work becomes mine on final payment.</strong> All the
+              rights and files for everything you create (logo, cards, badges,
+              graphics, source files) transfer to WhotFrenzy. Standard, just
+              good to have it clear.
+            </div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              <strong>Please keep it off the public eye.</strong> I'd rather
+              none of this go on your portfolio or socials, just let me know
+              first. It needs to stay private before and after launch.
+            </div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              <strong>And let's keep it between us.</strong> The brief, the app
+              screens, anything you see while working.
+            </div>
+          </div>
+        </div>
+        <div class="note amb">
+          <div class="nk">QUICK NOTE</div>
+          <div>
+            Nothing to read into here, I'm excited to work with you. I'd just
+            like to pop these into the agreement we sign so we're both covered.
+          </div>
+        </div>
+
+        <p class="label">Files</p>
+        <div class="blist">
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              <strong>Editable source files</strong> for everything (Figma or
+              Illustrator), which I'll own on final payment.
+            </div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              <strong>Logo</strong> in vector (SVG, AI/EPS, PDF) and PNG at a
+              few sizes, in colour, black, and white.
+            </div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              <strong>Exports</strong> of the cards, badges and social graphics,
+              plus the editable templates for the reusable social pieces.
+            </div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div><strong>Print-ready</strong> file for the business card.</div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              <strong>A short brand guide</strong> (PDF) covering logo usage,
+              the palette with values, the type, and a few do/don'ts. Doesn't
+              need to be huge, just usable.
+            </div>
+          </div>
+        </div>
+
+        <p class="label">The few things that really matter</p>
+        <div class="blist">
+          <div class="bl no">
+            <div class="bk">&times;</div>
+            <div>
+              Avoid the casino / casual card game / fintech / generic-"African"
+              looks (section 02).
+            </div>
+          </div>
+          <div class="bl no">
+            <div class="bk">&times;</div>
+            <div>No inspiration from existing Whot or card-game apps.</div>
+          </div>
+          <div class="bl no">
+            <div class="bk">&times;</div>
+            <div>Never "referral." Always "invitation" or "invite."</div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              The social and banner pieces must look
+              <strong>stunning AND convert</strong>, both, not one (section 09).
+            </div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              Original work only. No stock or AI-generated logos passed off as
+              custom. I may register the brand, so it has to be clean and
+              ownable.
+            </div>
+          </div>
+          <div class="bl">
+            <div class="bk">&#9656;</div>
+            <div>
+              The colours and fonts in this document are just my note style, not
+              the brand.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="foot rv">
+        <div class="wm">
+          <span>WHOT</span><span class="frenzy">FRENZY</span>
+        </div>
+        <div class="ws">Brand Identity Brief &middot; 2026</div>
+        <p>
+          Anything unclear, or you've got a better idea? Tell me. You're running
+          this, I just want us to build something we're both proud of.
+        </p>
+      </footer>
     </div>
-  </header>
 
-  <!-- TOC -->
-  <nav class="toc rv">
-    <div class="toc-h">What's inside</div>
-    <a href="#s01"><span class="sx">&#9711;</span> What WhotFrenzy Is</a>
-    <a href="#s02"><span class="sx">&#9651;</span> The Feeling &amp; What to Avoid</a>
-    <a href="#s03"><span class="sx">&#10010;</span> Logo</a>
-    <a href="#s04"><span class="sx">&#9633;</span> Colour</a>
-    <a href="#s05"><span class="sx">&#9733;</span> Typography</a>
-    <a href="#s06"><span class="sx">&#9711;</span> The Opening Screen</a>
-    <a href="#s07"><span class="sx">&#9651;</span> Whot Cards</a>
-    <a href="#s08"><span class="sx">&#10010;</span> Skill Badges</a>
-    <a href="#s09"><span class="sx">&#9633;</span> Social Graphics</a>
-    <a href="#s10"><span class="sx">&#9733;</span> Banners &amp; Business Card</a>
-    <a href="#s11"><span class="sx">&#9711;</span> App Store Assets (later)</a>
-    <a href="#s12"><span class="sx">&#9651;</span> Budget &amp; Payment</a>
-    <a href="#s13"><span class="sx">&#10010;</span> Rights, Files &amp; Rules</a>
-  </nav>
-
-  <!-- 01 -->
-  <section class="sec rv" id="s01">
-    <div class="sec-head">
-      <div class="sec-mark">&#9711;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">01 &middot; Background</div>
-        <h2 class="sec-title">What WhotFrenzy Is</h2>
-        <div class="sec-sub">Just enough to design well. Here's the gist of the product.</div>
-      </div>
-    </div>
-    <p class="prose">WhotFrenzy is a serious, competitive mobile platform built around <strong>Whot</strong>, the classic Nigerian card game millions already play. It's not a casual card game and it's not a gambling app. It's a skill competition: players go head to head in fast 1v1 matches, climb leaderboards, win real prizes, and build lasting status as champions.</p>
-    <p class="prose">It's a nightly thing. There's a tournament every evening that crowns a champion and celebrates the best players. There's a strong community and "best player you know" energy to it too. We're launching in Nigeria first.</p>
-    <div class="call"><strong>The shorthand in my head:</strong> WhotFrenzy is competitive energy with Nigerian cultural heat. Think a serious competition or e-sports brand that grew up in Lagos and actually plays Whot.</div>
-    <div class="note amb"><div class="nk">NAME STORY</div><div>One bit of background that might be useful, not as something to spell out anywhere, just to keep in the back of your mind for the feeling. The name plays on <strong>"Whot and Friends."</strong> Underneath all the competition, that's really what it's about: people playing the game they grew up on, with the people they know. The brand can be fierce and competitive on the surface, but there's warmth and community sitting right under it. If that spirit quietly comes through somewhere, great.</div></div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 02 -->
-  <section class="sec rv" id="s02">
-    <div class="sec-head">
-      <div class="sec-mark">&#9651;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">02 &middot; Direction</div>
-        <h2 class="sec-title">The Feeling &amp; What to Avoid</h2>
-        <div class="sec-sub">The vibe I'm chasing, and a few traps I really want us to dodge.</div>
-      </div>
-    </div>
-    <p class="label">The feeling</p>
-    <p class="prose">Competitive fire. Confidence. Warm, but not soft. Opening the app should feel like stepping into an arena, not opening a utility. It takes the player seriously, celebrates skill, and always points forward. I want it to look like it belongs next to the best competition brands anywhere, while feeling unmistakably Nigerian.</p>
-    <p class="label">What I really don't want it to look like</p>
-    <div class="blist">
-      <div class="bl no"><div class="bk">&times;</div><div><strong>Not a casino.</strong> No spinning wheels, coin stacks, "WIN!" banners, dice, nothing that reads as gambling. This is a skill competition and the look has to back that up.</div></div>
-      <div class="bl no"><div class="bk">&times;</div><div><strong>Not a casual card game.</strong> No wood-table backgrounds, rounded playful fonts, or bright primary-colour palettes. The existing Nigerian Whot apps look like that, and I want us to look like what they wish they could be.</div></div>
-      <div class="bl no"><div class="bk">&times;</div><div><strong>Not a fintech app.</strong> Clean and corporate kills the energy. People should feel a bit of heat when they open it, not the calm of a banking app.</div></div>
-      <div class="bl no"><div class="bk">&times;</div><div><strong>Not generically "African-themed."</strong> No Ankara patterns, no map-of-Africa outlines, no surface-level cultural decoration. The Nigerian identity should come through in energy and attitude, not decoration pasted on top.</div></div>
-    </div>
-    <div class="note blu"><div class="nk">HOW WE'LL WORK</div><div>You drive. I'd just love to see things as they develop, early directions, rough concepts, whatever, so I can give quick reactions and we don't go too far down a path before checking in. Otherwise, your process is your process.</div></div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 03 -->
-  <section class="sec rv" id="s03">
-    <div class="sec-head">
-      <div class="sec-mark">&#10010;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">03 &middot; Core</div>
-        <h2 class="sec-title">Logo</h2>
-        <div class="sec-sub">From scratch. There's nothing existing.</div>
-      </div>
-    </div>
-    <div class="play">
-      <p class="play-lead">The name is <strong>WhotFrenzy</strong>. It needs to work everywhere: a phone splash screen, a tiny app icon on a home screen, on the app interface, on social graphics, and in a single colour for stamps and merch. I'll need the main logo plus whatever supporting versions you think it needs to live in all those places, including a strong <strong>app icon</strong> and a one-colour black and white version. How you get there is up to you.</p>
-      <div class="note blu"><div class="nk">APP ICON</div><div>The icon has to work on both <strong>iOS and Android</strong>. I'd also love it to support the newer phone feature where the icon adapts to the colour the user themes their home screen with, so it would help to have a simple, bold <strong>single-colour (monochrome) version of the mark</strong> alongside the full-colour one, delivered as vector. Happy to share the exact size and export specs with you once we're building.</div></div>
-    </div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 04 -->
-  <section class="sec rv" id="s04">
-    <div class="sec-head">
-      <div class="sec-mark">&#9633;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">04 &middot; Core</div>
-        <h2 class="sec-title">Colour</h2>
-        <div class="sec-sub">Yours to define, with one reference point.</div>
-      </div>
-    </div>
-    <div class="play">
-      <p class="play-lead">The app screens are already being designed, and I'll share those with you as <strong>visual reference</strong>. This isn't a total blank page on colour. I'd really like you to <strong>take inspiration from those UI/UX references so the brand palette aligns with the app</strong> and they feel like the same world. Read the screens, pull the direction and energy from them, and build a palette that sits naturally alongside what's there. I'm just not handing over exact colour codes, I'd rather you interpret it. When it's done, give me the final palette with proper values so the team can use it consistently.</p>
-    </div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 05 -->
-  <section class="sec rv" id="s05">
-    <div class="sec-head">
-      <div class="sec-mark">&#9733;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">05 &middot; Core</div>
-        <h2 class="sec-title">Typography</h2>
-        <div class="sec-sub">A type system for a product full of numbers.</div>
-      </div>
-    </div>
-    <div class="play">
-      <p class="play-lead">There are a lot of numbers in this product: scores, prize amounts, countdowns, win streaks. So how numbers look matters as much as headlines do. I need a type system that feels bold and competitive at big sizes and stays clean and readable small on a phone. Pick what works and show me how it all fits together. One ask: please use fonts we can legally license for app, web and print, and let me know the licence terms for anything that isn't free for commercial use.</p>
-    </div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 06 -->
-  <section class="sec rv" id="s06">
-    <div class="sec-head">
-      <div class="sec-mark">&#9711;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">06 &middot; Asset</div>
-        <h2 class="sec-title">The Opening Screen</h2>
-        <div class="sec-sub">The first frame people see every time they open the app.</div>
-      </div>
-    </div>
-    <div class="play">
-      <p class="play-lead">This is the one moment the logo gets the whole screen to itself, the loading or opening screen. I want it to feel like walking into an arena, a little ritual, not a loading bar. It's where the logo, colour and type all show off together. It's portrait, and there should be room for a single line of rotating copy under the logo (I'll supply the lines). If you have a feel for how it should come alive or animate, drop me a note on the intended movement so the dev team can carry it through.</p>
-    </div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 07 -->
-  <section class="sec rv" id="s07">
-    <div class="sec-head">
-      <div class="sec-mark">&#9651;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">07 &middot; Asset</div>
-        <h2 class="sec-title">Whot Cards</h2>
-        <div class="sec-sub">The cards are the product. Premium, and readable at speed.</div>
-      </div>
-    </div>
-    <div class="play">
-      <p class="play-lead">Whot is played with a <strong>50-card deck</strong> across five shapes (Circle, Triangle, Cross, Square and Star), plus the special <strong>Whot</strong> card. The big thing to know: during a match, cards have to be readable <strong>at a glance, fast</strong>. So they need to look premium and distinctive, but never so busy that the shape and number get hard to read mid-game. Here's the set I need:</p>
-      <p class="label">The card treatments</p>
-      <div class="rows">
-        <div class="row"><div class="row-k">Normal card</div><div class="row-v">One consistent look for standard number cards across all five shapes.</div></div>
-        <div class="row"><div class="row-k">Special card</div><div class="row-v">A distinct look for the action cards, so players can tell at a glance a card is special. One special-card style.</div></div>
-        <div class="row"><div class="row-k">The Whot card (20)</div><div class="row-v">The wild card, numbered 20, played to call a shape. It's the single most special card in the deck and should have its own standout design, clearly above everything else.</div></div>
-        <div class="row"><div class="row-k">Card back</div><div class="row-v">The face-down back. It's on screen constantly, so it needs to look great and feel like the brand.</div></div>
-      </div>
-      <div class="call"><strong>One real ask:</strong> please don't take inspiration from existing Whot apps or other card-game apps. I'd love this to feel like ours, not borrowed.</div>
-    </div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 08 -->
-  <section class="sec rv" id="s08">
-    <div class="sec-head">
-      <div class="sec-mark">&#10010;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">08 &middot; Asset</div>
-        <h2 class="sec-title">Skill Badges</h2>
-        <div class="sec-sub">Four badges, one family. They're proof of achievement players show off.</div>
-      </div>
-    </div>
-    <div class="play">
-      <p class="play-lead">Badges live on a player's profile as proof of what they've pulled off, basically a trophy room. I need four for now. They should feel like one family (a shared look) while each clearly stands for its own thing. <strong>What each one looks like is entirely your creative call</strong>, I'm just giving you the name and what it means.</p>
-      <p class="label">The four</p>
-      <div class="rows">
-        <div class="row"><div class="row-k">Chain God</div><div class="row-v">For the longest chain of cards played back to back without the opponent getting a turn. Think: an unbroken chain, momentum, a streak.</div></div>
-        <div class="row"><div class="row-k">Unbeatable</div><div class="row-v">For the longest run of consecutive wins. Think: dominance, an unbroken winning streak.</div></div>
-        <div class="row"><div class="row-k">The Machine</div><div class="row-v">For relentless, efficient, fast play across a full session. Think: precision, a machine that doesn't stop.</div></div>
-        <div class="row"><div class="row-k">Invincible</div><div class="row-v">The big one. A perfect session, every game won, zero losses. The rarest, most prestigious. It should clearly look a tier above the other three.</div></div>
-      </div>
-      <div class="note amb"><div class="nk">ONE THING</div><div>For <strong>Invincible</strong>, if the badge shows a number, build that number as its own swappable element rather than baking it into the art. The target shifts over time, so I want to be able to change the number without redrawing the whole badge.</div></div>
-    </div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 09 -->
-  <section class="sec rv" id="s09">
-    <div class="sec-head">
-      <div class="sec-mark">&#9633;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">09 &middot; Application</div>
-        <h2 class="sec-title">Social Graphics &mdash; Five</h2>
-        <div class="sec-sub">Two fixed hero pieces and three reusable templates I'll fill again and again.</div>
-      </div>
-    </div>
-    <div class="call">Before the list, the thing I care about most here. How these <em>look</em> is hugely important to me. Hugely. I can't overstate it. They have to look genuinely amazing, the kind of work that makes someone stop scrolling. <strong>But</strong> looking amazing can't be the whole job. A lot of beautiful designs, the kind that fill designers' portfolios, don't actually <em>do</em> anything: they don't pull the eye to the point and they don't get anyone to take an action. So I need both: stunning to look at <em>and</em> built to convert. Each one has a single job (get a sign-up, get a share, make someone want in), and the design has to drive the viewer toward that action. Beautiful and effective, not one or the other.</div>
-    <p class="prose">Three of these are <strong>templates</strong>, a designed shell where only the name, photo, stat or amount changes, because we'll be posting fresh results often. Please design for the main platforms (Instagram, X, WhatsApp status, Facebook); plan for square and vertical/story formats and we'll confirm exact sizes.</p>
-
-    <div class="play"><div class="play-head"><div class="ph-tag">1</div><div class="ph-name">Champion Announcement</div><div class="ph-note">Used often</div><div class="chip chip-tmpl">Template</div></div>
-      <p class="play-lead">Announces the night's champion. The one I'll use most. Needs clear space for the winner's name, their photo, and the prize amount, and it should make people want to be next.</p></div>
-
-    <div class="play"><div class="play-head"><div class="ph-tag">2</div><div class="ph-name">Launch Offer</div><div class="ph-note">Sign-up driver</div><div class="chip chip-hero">Hero</div></div>
-      <p class="play-lead">Our launch headline, built to get people to sign up. The whole job of this one is conversion: make the offer impossible to scroll past and obvious what to do next.</p></div>
-
-    <div class="play"><div class="play-head"><div class="ph-tag">3</div><div class="ph-name">Invincible Promo</div><div class="ph-note">The dream</div><div class="chip chip-hero">Hero</div></div>
-      <p class="play-lead">This is the aspirational one. A perfect session, win every game, lose none, for the biggest prize on the platform. It is the "wait, is that even possible?" graphic that makes people want to try. I want this built as a <strong>reusable template, not a one-off</strong>, and here is the honest reason why. The target for Invincible is going to change as we grow. It starts at one number of wins and moves up later, and the prize figure could move too. If those numbers are baked into the artwork, every change means paying for a fresh design. If the win count and the amount are their own swappable layers in a clean template, I just drop in the new number myself and the graphic keeps working for years. So please treat the figures as editable fields sitting on top of a design that stays the same.</p></div>
-
-    <div class="play"><div class="play-head"><div class="ph-tag">4</div><div class="ph-name">Skill Spotlight</div><div class="ph-note">Rotates</div><div class="chip chip-tmpl">Template</div></div>
-      <p class="play-lead">Highlights a standout skill feat from a session, rotating across Chain God, Unbeatable and The Machine. This is the one that shows the platform is about skill, not luck. Needs space for the skill name, the stat, and the player.</p></div>
-
-    <div class="play"><div class="play-head"><div class="ph-tag">5</div><div class="ph-name">Invitation</div><div class="ph-note">Share driver</div><div class="chip chip-tmpl">Template</div></div>
-      <p class="play-lead">Gets existing players to bring in the best Whot players they know. Its whole job is to get a share or an invite sent, so make the action clear and worth doing.</p>
-      <div class="note blu"><div class="nk">WORDING</div><div>Please never use the word <strong>"referral"</strong> or "refer a friend." We always say <strong>invitation</strong> or <strong>invite</strong>. Small thing, but it matters to us.</div></div></div>
-
-    <p class="label">Taglines you can use</p>
-    <p class="prose">You don't have to write the copy from scratch. Here are lines from our own bank that fit the promo and banner pieces, so feel free to pull from these or work them into the designs. They carry the WhotFrenzy voice, so they're a safe place to start.</p>
-    <div class="tg"><div class="tg-h">For the launch / promo / banner pieces</div>
-      <div class="tg-l">Your skills. Real rewards. One session.</div>
-      <div class="tg-l">This is what serious Whot looks like.</div>
-      <div class="tg-l">Champions are made one elimination at a time.</div>
-      <div class="tg-l">One session can change everything.</div>
-      <div class="tg-l">Nobody remembers who almost won.</div>
-      <div class="tg-l">The Frenzy doesn't wait.</div>
-      <div class="tg-l">The window is open. Are you?</div>
-    </div>
-    <div class="tg"><div class="tg-h">For the Invincible piece</div>
-      <div class="tg-l">Greatness doesn't announce itself. It eliminates.</div>
-      <div class="tg-l">You didn't come this far to watch someone else win.</div>
-    </div>
-    <div class="tg"><div class="tg-h">For the invitation piece</div>
-      <div class="tg-l">Invite the best Whot player you know.</div>
-      <div class="tg-l">The Whot masters are waiting.</div>
-    </div>
-
-    <div class="note amb"><div class="nk">HEADS UP</div><div>A couple of these need things I'm still working out, namely <strong>player photos or portraits</strong> and a few <strong>final amounts</strong>. Just leave those as clearly marked placeholders for now and I'll confirm, so nothing has to be redone.</div></div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 10 -->
-  <section class="sec rv" id="s10">
-    <div class="sec-head">
-      <div class="sec-mark">&#9733;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">10 &middot; Application</div>
-        <h2 class="sec-title">Banners &amp; Business Card</h2>
-        <div class="sec-sub">A bit more reach for launch, plus a physical piece.</div>
-      </div>
-    </div>
-    <div class="play"><div class="play-head"><div class="ph-tag sym">&#9724;</div><div class="ph-name">2 promotional banners</div><div class="ph-note">Digital placement</div></div>
-      <p class="play-lead">Two promo banners, same standard as the social graphics above: they need to look <strong>excellent</strong> and they need to <strong>work</strong>. Each should have one clear point and pull the viewer toward one action. You can use the taglines above. We'll confirm exact sizes and where they'll run, so build them flexible for common banner ratios.</p></div>
-    <div class="play"><div class="play-head"><div class="ph-tag sym">&#9724;</div><div class="ph-name">1 business card</div><div class="ph-note">Print-ready, both sides</div></div>
-      <p class="play-lead">A WhotFrenzy business card, print-ready, both sides. A nice chance to show the brand working in print.</p></div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 11 -->
-  <section class="sec rv" id="s11">
-    <div class="sec-head">
-      <div class="sec-mark">&#9711;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">11 &middot; Later</div>
-        <h2 class="sec-title">App Store Assets</h2>
-        <div class="sec-sub">Flagging it now so the full job is visible, but we'll do this part later.</div>
-      </div>
-    </div>
-    <div class="play"><div class="play-head"><div class="ph-tag sym">&#9724;</div><div class="ph-name">7 app store displays + store icon &amp; feature graphic</div><div class="ph-note">Store listing</div><div class="chip chip-later">Later</div></div>
-      <p class="play-lead">A set of <strong>7 app store display graphics</strong>, the framed, captioned screenshots that sell the app on its store page, plus the store icon and feature graphic. These wrap the real app screens in brand framing, so I'll hand you the finished screens to build from once the app's design is done.</p>
-      <div class="note amb"><div class="nk">TIMING</div><div>Not now. These come after the app screens are finished. I'm just listing them so you can see the full picture and we can talk about quoting this part separately when we're ready.</div></div></div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 12 -->
-  <section class="sec rv" id="s12">
-    <div class="sec-head">
-      <div class="sec-mark">&#9651;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">12 &middot; Terms</div>
-        <h2 class="sec-title">Budget &amp; Payment</h2>
-        <div class="sec-sub">Where I'm at on budget, and a starting idea for milestones, open to your take.</div>
-      </div>
-    </div>
-    <p class="prose">My budget for everything above (the app store set in section 11 is separate, for later) is <strong>$1,000</strong>. I'd like to split it <strong>30 / 30 / 40</strong> across three milestones. Here's a starting suggestion for what each milestone covers, but you know your own process better than I do, so if you'd rather group the work differently, tell me how you'd split it and we'll agree together.</p>
-    <div class="ms"><div class="ms-pct">30%</div><div class="ms-b"><div class="ms-n">Milestone 1 &middot; Foundation</div><div class="ms-d">Logo, colour and typography agreed.</div></div><div class="ms-amt">$300</div></div>
-    <div class="note blu"><div class="nk">PLEASE NOTE</div><div><strong>Milestone 1 is the one I need first and fastest.</strong> The team designing the app screens is waiting on the logo, and on any typography decisions, so they can line the app up with the brand. So the moment the logo and type are settled, I'll need to hand those over to them even before the rest of the work is done. If we can prioritise getting that part locked early, it unblocks the whole app side.</div></div>
-    <div class="ms"><div class="ms-pct">30%</div><div class="ms-b"><div class="ms-n">Milestone 2 &middot; Core assets</div><div class="ms-d">Opening screen, the Whot cards, and the four badges.</div></div><div class="ms-amt">$300</div></div>
-    <div class="ms"><div class="ms-pct">40%</div><div class="ms-b"><div class="ms-n">Milestone 3 &middot; Application &amp; handoff</div><div class="ms-d">The five social graphics, two banners, business card, final files and a short brand guide.</div></div><div class="ms-amt">$400</div></div>
-    <div class="note amb"><div class="nk">OPEN</div><div>Totally open to your suggestion on the timeline too, roughly how long you'd want for each milestone, and how many concept directions and rounds of revision you'd include. Let's land on something that works for both of us.</div></div>
-  </section>
-
-  <hr class="div">
-
-  <!-- 13 -->
-  <section class="sec rv" id="s13">
-    <div class="sec-head">
-      <div class="sec-mark">&#10010;</div>
-      <div class="sec-head-txt">
-        <div class="sec-kicker">13 &middot; Terms</div>
-        <h2 class="sec-title">Rights, Files &amp; Rules</h2>
-        <div class="sec-sub">What I'll need to receive, who owns it, and a short list of the things that matter most.</div>
-      </div>
-    </div>
-
-    <p class="label">Ownership &amp; confidentiality</p>
-    <p class="prose">Just a couple of quick things on ownership and keeping the work private.</p>
-    <div class="blist">
-      <div class="bl"><div class="bk">&#9656;</div><div><strong>The work becomes mine on final payment.</strong> All the rights and files for everything you create (logo, cards, badges, graphics, source files) transfer to WhotFrenzy. Standard, just good to have it clear.</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div><strong>Please keep it off the public eye.</strong> I'd rather none of this go on your portfolio or socials, just let me know first. It needs to stay private before and after launch.</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div><strong>And let's keep it between us.</strong> The brief, the app screens, anything you see while working.</div></div>
-    </div>
-    <div class="note amb"><div class="nk">QUICK NOTE</div><div>Nothing to read into here, I'm excited to work with you. I'd just like to pop these into the agreement we sign so we're both covered.</div></div>
-
-    <p class="label">Files</p>
-    <div class="blist">
-      <div class="bl"><div class="bk">&#9656;</div><div><strong>Editable source files</strong> for everything (Figma or Illustrator), which I'll own on final payment.</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div><strong>Logo</strong> in vector (SVG, AI/EPS, PDF) and PNG at a few sizes, in colour, black, and white.</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div><strong>Exports</strong> of the cards, badges and social graphics, plus the editable templates for the reusable social pieces.</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div><strong>Print-ready</strong> file for the business card.</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div><strong>A short brand guide</strong> (PDF) covering logo usage, the palette with values, the type, and a few do/don'ts. Doesn't need to be huge, just usable.</div></div>
-    </div>
-
-    <p class="label">The few things that really matter</p>
-    <div class="blist">
-      <div class="bl no"><div class="bk">&times;</div><div>Avoid the casino / casual card game / fintech / generic-"African" looks (section 02).</div></div>
-      <div class="bl no"><div class="bk">&times;</div><div>No inspiration from existing Whot or card-game apps.</div></div>
-      <div class="bl no"><div class="bk">&times;</div><div>Never "referral." Always "invitation" or "invite."</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div>The social and banner pieces must look <strong>stunning AND convert</strong>, both, not one (section 09).</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div>Original work only. No stock or AI-generated logos passed off as custom. I may register the brand, so it has to be clean and ownable.</div></div>
-      <div class="bl"><div class="bk">&#9656;</div><div>The colours and fonts in this document are just my note style, not the brand.</div></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="foot rv">
-    <div class="wm"><span>WHOT</span><span class="frenzy">FRENZY</span></div>
-    <div class="ws">Brand Identity Brief &middot; 2026</div>
-    <p>Anything unclear, or you've got a better idea? Tell me. You're running this, I just want us to build something we're both proud of.</p>
-  </footer>
-
-</div>
-
-<script>
-(function(){
-  var bar=document.getElementById('bar'),top=document.getElementById('top');
-  function onScroll(){
-    var h=document.documentElement,
-        sc=h.scrollTop||document.body.scrollTop||0,
-        mx=(h.scrollHeight-h.clientHeight)||1;
-    if(bar)bar.style.width=(sc/mx*100)+'%';
-    if(top){ if(sc>500){top.classList.add('on')}else{top.classList.remove('on')} }
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
-  if(top){top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});}
-
-  var items=document.querySelectorAll('.rv');
-  function showAll(){items.forEach(function(el){if(el&&el.classList)el.classList.add('in');});}
-
-  if('IntersectionObserver' in window){
-    try{
-      var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e&&e.isIntersecting&&e.target&&e.target.classList){
-            e.target.classList.add('in');
-            try{io.unobserve(e.target);}catch(_){}
+    <script>
+      (function () {
+        var bar = document.getElementById("bar"),
+          top = document.getElementById("top");
+        function onScroll() {
+          var h = document.documentElement,
+            sc = h.scrollTop || document.body.scrollTop || 0,
+            mx = h.scrollHeight - h.clientHeight || 1;
+          if (bar) bar.style.width = (sc / mx) * 100 + "%";
+          if (top) {
+            if (sc > 500) {
+              top.classList.add("on");
+            } else {
+              top.classList.remove("on");
+            }
           }
-        });
-      },{threshold:0.08});
-      items.forEach(function(el){ if(el)io.observe(el); });
-      setTimeout(showAll,1200);
-    }catch(err){ showAll(); }
-  }else{
-    showAll();
-  }
-})();
-</script>
-</body>
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+        if (top) {
+          top.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+
+        var items = document.querySelectorAll(".rv");
+        function showAll() {
+          items.forEach(function (el) {
+            if (el && el.classList) el.classList.add("in");
+          });
+        }
+
+        if ("IntersectionObserver" in window) {
+          try {
+            var io = new IntersectionObserver(
+              function (entries) {
+                entries.forEach(function (e) {
+                  if (e && e.isIntersecting && e.target && e.target.classList) {
+                    e.target.classList.add("in");
+                    try {
+                      io.unobserve(e.target);
+                    } catch (_) {}
+                  }
+                });
+              },
+              { threshold: 0.08 },
+            );
+            items.forEach(function (el) {
+              if (el) io.observe(el);
+            });
+            setTimeout(showAll, 1200);
+          } catch (err) {
+            showAll();
+          }
+        } else {
+          showAll();
+        }
+      })();
+    </script>
+  </body>
 </html>
